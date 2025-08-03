@@ -61,7 +61,7 @@ class CarListHelper
             'car_transmissions' => (array) Arr::get($inputs, 'car_transmissions', []),
             'car_fuel_types' => (array) Arr::get($inputs, 'car_fuel_types', []),
             'car_review_scores' => (array) Arr::get($inputs, 'car_review_scores', []),
-            'car_booking_locations' => (array) Arr::get($inputs, 'car_booking_locations', []),
+            'car_booking_locations' => [],
             'car_amenities' => (array) Arr::get($inputs, 'car_amenities', []),
             'car_make' => (int) Arr::get($inputs, 'car_make', 0),
             'page' => (int) Arr::get($inputs, 'page', 1),

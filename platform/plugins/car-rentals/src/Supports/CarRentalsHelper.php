@@ -89,7 +89,7 @@ class CarRentalsHelper
             return [];
         }
 
-        $filterBy = theme_option('car_location_filter_by', 'state');
+        $filterBy = theme_option('', '');
 
         $isDisplayCountry = theme_option('car_location_is_display_country', true);
 

@@ -17,7 +17,7 @@
                     </a>
                 @endif
             </div>
-            <div class="brand-slider box-list-brand-car justify-content-center  wow fadeIn">
+            <!-- <div class="brand-slider box-list-brand-car justify-content-center  wow fadeIn">
                 @foreach($makes as $make)
                     <div class="brand-logo">
                         <a href="{{ $make->url }}" class="item-brand">
@@ -26,7 +26,7 @@
                         </a>
                     </div>
                 @endforeach
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

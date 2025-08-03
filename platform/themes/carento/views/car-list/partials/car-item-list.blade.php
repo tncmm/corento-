@@ -18,73 +18,85 @@
         $carUrl = $car->url . '?' . http_build_query($query);
     }
 @endphp
-<div class="col-xl-12 col-lg-12">
-    <div class="card-flight card-hotel card-property background-card border">
-        <div class="card-image">
-            <a href="{{ $carUrl }}">
-                {{ RvMedia::image($car->image , $car->name, 'medium-rectangle') }}
-            </a></div>
-        <div class="card-info p-md-40 p-3">
-            @if($avgReview = $car->avg_review)
-            <div class="tour-rate">
-                <div class="rate-element">
-                    <span class="rating">
-                       <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-star"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" /></svg>
 
-                        <span>
-                            {{ $avgReview }}
-                        </span>
-                            @if($reviews = $car->reviews)
-                                <span class="text-sm-medium neutral-500">
-                                    ({{ $reviews->count() ?? 0 }} {{ $reviews->count() > 1 ? __('reviews') : __('review') }})
-                                </span>
-                            @endif
-                    </span>
-                </div>
-            </div>
-            @endif
-            <div class="card-title">
-                <a class="heading-6 neutral-1000" href="{{ $carUrl }}">
-                    {{ $car->name }}
-                </a>
-            </div>
-            <div class="card-program">
-                <div class="card-location mb-25">
-                    @if($pickAddress = $car->pickupAddress)
-                        <p class="text-location text-md-medium neutral-500 text-truncate" title="{{ $pickAddress->detail_address }}">{{ BaseHelper::clean($pickAddress->detail_address) }}</p>
-                    @endif
-                </div>
-                <div class="card-facilities">
-                    @if($mileage = $car->mileage)
-                        <div class="item-facilities">
-                            <p class="room text-md-medium neutral-1000">{{ $mileage }} mileage</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<div class="col-xl-12 col-lg-12 mb-4">
+    <div class="d-flex border rounded overflow-hidden background-body shadow-sm" style="min-height: 180px;">
+
+        {{-- Sol: Görsel --}}
+        <div class="d-flex align-items-center justify-content-center " style="min-width: 200px;">
+            <a href="{{ $carUrl }}">
+                <img src="{{ RvMedia::getImageUrl($car->image, 'medium-rectangle', false, RvMedia::getDefaultImage()) }}"
+                     alt="{{ $car->name }}"
+                     style="max-width: 180px; height: auto; object-fit: cover;">
+            </a>
+        </div>
+
+        {{-- Orta: Bilgi --}}
+        <div class="flex-grow-1 d-flex flex-column justify-content-between p-3">
+            <div>
+
+
+                {{-- Başlık --}}
+                <h5 class="mb-2 fw-semibold">
+                    <h6 href="{{ $carUrl }}" class="text-dark text-decoration-none">{{ $car->name }}</h6>
+                </h5>
+
+                {{-- Lokasyon --}}
+                @if($pickAddress = $car->pickupAddress)
+                    <p class="mb-2 text-muted text-sm">
+                        <strong>Pick-Up Location:</strong> {{ BaseHelper::clean($pickAddress->detail_address) ?? 'Free Shuttle Bus' }}
+                    </p>
+                @endif
+
+                {{-- Özellikler: Görsel sırasına göre ama sadece mevcut olanlar --}}
+                <div class="row text-sm text-secondary">
+                    @if($car->number_of_seats)
+                        <div class="col-4 mb-2">
+                            <i class="fa-solid fa-user-group me-1 text-dark"></i> {{ $car->number_of_seats }} Seats
                         </div>
                     @endif
+                    @if(!empty($car->mileage) && strtolower($car->mileage) === 'unlimited')
+                        <div class="col-4 mb-2">
+                            <i class="fa-solid fa-road me-1 text-dark"></i> Unlimited Mileage
+                        </div>
+                    @endif
+                    @if(!empty($car->number_of_bags))
+                        <div class="col-4 mb-2">
+                            <i class="fa-solid fa-suitcase-rolling me-1 text-dark"></i> {{ $car->number_of_bags }} Bags
+                        </div>
+                    @endif
+                    <div class="col-4 mb-2">
+                        <i class="fa-solid fa-right-left me-1 text-dark"></i> Same to Same
+                    </div>
                     @if($transmission && $transmission->name)
-                        <div class="item-facilities">
-                            <p class="size text-md-medium neutral-1000">{{ $transmission->name }}</p>
+                        <div class="col-4 mb-2">
+                            <i class="fa-solid fa-gear me-1 text-dark"></i> {{ $transmission->name }}
                         </div>
                     @endif
-                    @if($types && $types->name)
-                        <div class="item-facilities">
-                            <p class="parking text-md-medium neutral-1000">{{ $types->name }}</p>
-                        </div>
-                    @endif
-                    @if($numberOfSeat = $car->number_of_seats)
-                        <div class="item-facilities">
-                            <p class="bathroom text-md-medium neutral-1000">{{ $numberOfSeat }} {{ $numberOfSeat == 1 ? __('seat') : __('seats') }}</p>
-                        </div>
-                    @endif
-                    @if($make && $make->name)
-                        <div class="item-facilities">
-                            <p class="pet text-md-medium neutral-1000">{{ $make->name }}</p>
-                        </div>
-                    @endif
+                    <div class="col-4 mb-2">
+                        <i class="fa-solid fa-shield-halved me-1 text-dark"></i> Damage & theft coverage
+                    </div>
                 </div>
-                <div class="endtime">
-                    @include(Theme::getThemeNamespace('views.car-rentals.price'), ['car' => $car])
-                    @include(Theme::getThemeNamespace('views.car-rentals.book-now-button'), ['car' => $car])
+            </div>
+
+            {{-- Puan --}}
+            @if($car->avg_review)
+                <div class="d-inline-flex align-items-center mt-2 px-2 py-1 bg-success text-white rounded" style="width: fit-content;">
+                    <span class="fw-bold me-1">{{ number_format($car->avg_review, 1) }}</span>
+                    <span class="text-white small">Good</span>
                 </div>
+            @endif
+        </div>
+
+        {{-- Sağ: Fiyat & Buton --}}
+        <div class="d-flex flex-column justify-content-end text-center bg-body-secondary border-start p-3" style="min-width: 180px;">
+            <div class="mb-2">
+                <h4 class="text-dark mb-0">€ {{ number_format($car->price_for_9_days ?? 235.17, 2) }}</h4>
+            </div>
+            <div>
+                <a href="{{ $carUrl }}" class="btn w-100 text-white" style="background-color: #007b99;">Select</a>
             </div>
         </div>
     </div>

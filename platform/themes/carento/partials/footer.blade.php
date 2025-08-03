@@ -17,17 +17,9 @@
     "--footer-background-image: url($backgroundImage)" => $backgroundImage,
 ])>
     <div class="container">
-        <div class="footer-top">
-            {!! dynamic_sidebar('top_footer_sidebar') !!}
-        </div>
-        <div class="row">
-            {!! dynamic_sidebar('footer_sidebar') !!}
-        </div>
-        <div class="footer-bottom mt-50">
             <div class="row row align-items-center justify-content-center">
                 {!! dynamic_sidebar('bottom_footer_sidebar') !!}
             </div>
-        </div>
     </div>
 </footer>
 

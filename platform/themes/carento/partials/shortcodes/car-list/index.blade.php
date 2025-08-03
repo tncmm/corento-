@@ -24,7 +24,7 @@
 </section>
 <section class="box-section block-content-tourlist background-body">
     <div class="container">
-        <div class="box-content-main pt-20">
+        <div class="box-content-main pt-20 bg-light">
             @include(Theme::getThemeNamespace('views.car-list.partials.car-items',[
                     'cars' => $cars,
                     'defaultLayout' => $defaultLayout,

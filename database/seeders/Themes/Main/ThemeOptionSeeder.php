@@ -36,7 +36,7 @@ class ThemeOptionSeeder extends BaseSeeder
             'text_color' => '#454545',
             'header_top_background_color' => '#000000',
             'header_top_text_color' => '#ffffff',
-            'is_header_transparent' => true,
+            'is_header_transparent' => false,
             'preloader_enabled' => true,
             'preloader_version' => 'v2',
             'breadcrumb_background_image' => $this->filePath('backgrounds/service-bg.jpg'),

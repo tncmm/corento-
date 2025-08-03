@@ -1113,6 +1113,13 @@ a.icon-socials {
         right: var(--box-mr);
     }
 }
+hr.divider {
+    border: 0;
+    border-top: 0.7px solid #B0B0B0; /* Daha ince ve belirgin gri */
+    margin: 1rem 0;
+    opacity: 100; /* Gerekirse artırılabilir */
+}
+
 
 .form-contact {
     .form-group .cb-remember {

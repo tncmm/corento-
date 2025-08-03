@@ -38,7 +38,7 @@ class CarFilterSettingForm extends SettingForm
                     ->label(trans('plugins/car-rentals::settings.car_filter.forms.filter_cars_by'))
                     ->choices([
                         'vehicle_condition' => trans('plugins/car-rentals::settings.car_filter.forms.vehicle_condition'),
-                        'locations' => trans('plugins/car-rentals::settings.car_filter.forms.locations'),
+                        //'locations' => trans('plugins/car-rentals::settings.car_filter.forms.locations'),
                         'prices' => trans('plugins/car-rentals::settings.car_filter.forms.prices'),
                         'categories' => trans('plugins/car-rentals::settings.car_filter.forms.categories'),
                         'colors' => trans('plugins/car-rentals::settings.car_filter.forms.colors'),

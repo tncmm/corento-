@@ -24,6 +24,17 @@
   .box-content-info-detail {
     margin-top: -90px;
   }
+  .dark-mode .box-grid-hotels {
+    background-color: #1e1e1e; /* Daha koyu bir arka plan */
+    color: #f1f1f1; /* Açık yazı rengi */
+}
+
+/* İsteğe bağlı olarak kartlara da koyu tema desteği ekle */
+.dark-mode .car-items .car-item {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #ddd;
+}
 }
 @include media-breakpoint-down(xl) {
   //max-width: 1199.98px
@@ -706,6 +717,12 @@
   .left-top-search {
     margin-bottom: 5px;
   }
+  hr.divider {
+    border: 0;
+    border-top: 0.7px solid #B0B0B0; /* Daha ince ve belirgin gri */
+    margin: 1rem 0;
+    opacity: 100; /* Gerekirse artırılabilir */
+}
   .box-search-advance .box-bottom-search .btn-black-lg {
     width: 100%;
     justify-content: center;

@@ -17,9 +17,7 @@
                         @continue(! ($question = $faqItem->get('question')) || ! ($answer = $faqItem->get('answer')))
 
                         <div class="item-question">
-                            <div class="head-question">
-                                <p class="text-md-bold neutral-1000">{!! BaseHelper::clean($question) !!}</p>
-                            </div>
+                           
                             <div class="content-question">
                                 <p class="text-sm-medium neutral-800">{!! BaseHelper::clean($answer) !!}</p>
                             </div>

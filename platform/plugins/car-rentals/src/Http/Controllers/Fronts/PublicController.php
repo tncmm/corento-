@@ -58,13 +58,13 @@ class PublicController extends BaseController
             ->add(__('Cars'), route('public.cars'));
 
         $request->validate([
-            'pickup_location' => ['nullable', 'exists:states,id'],
+            //'pickup_location' => ['nullable', 'exists:states,id'],
             'drop_off_location' => ['nullable', 'exists:states,id'],
             'rental_start_date' => ['nullable', 'date'],
             'rental_end_date' => ['nullable', 'date'],
         ]);
 
-        $pickupLocation = $request->input('pickup_location');
+        $pickupLocation = "";
         $dropOffLocation = $request->input('drop_off_location');
 
         $startDate = $request->input('rental_start_date') ? CarRentalsHelper::dateFromRequest($request->input('rental_start_date')) : null;
